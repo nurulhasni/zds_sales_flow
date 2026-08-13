@@ -1,0 +1,188 @@
+/* SAPUI5 Custom Styling matching Mockup Design */
+
+/* 1. Shell Header Nav */
+.shellHeaderNav {
+    background-color: #0f2537;
+    color: #ffffff;
+    padding: 0.4rem 1rem;
+}
+
+.shellHeaderBox {
+    height: 36px;
+}
+
+.shellBackButton {
+    color: #ffffff !important;
+}
+
+.shellBackButton .sapMBtnIcon {
+    color: #ffffff !important;
+}
+
+.shellBrandText {
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.shellTitleText {
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 15px;
+    font-family: monospace, Arial, sans-serif;
+}
+
+/* 2. Selection Screen & Filter Bar */
+.sectionTitleHeader {
+    font-weight: bold !important;
+    font-family: monospace, Arial, sans-serif !important;
+    letter-spacing: 0.5px;
+}
+
+.filterBarContainer {
+    padding: 0.5rem 0;
+}
+
+.filterCell {
+    margin-right: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.filterCell label {
+    font-weight: 600 !important;
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+/* 3. Section Cards */
+.sectionCardBox {
+    background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.customSectionToolbar {
+    background: transparent !important;
+    border-bottom: none !important;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+}
+
+.sectionTitleText {
+    font-weight: bold !important;
+    font-family: monospace, Arial, sans-serif !important;
+    font-size: 16px !important;
+}
+
+/* 4. KPI Custom Tiles (2x3 Grid matching mockup) */
+.kpiCustomTile {
+    background: #ffffff;
+    border: 1.5px solid #333333;
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.kpiCustomTile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.kpiTileLabel {
+    font-size: 11px;
+    color: #555555;
+    font-weight: 600;
+}
+
+.kpiTileValue {
+    font-size: 16px;
+    font-weight: bold;
+    color: #222222;
+}
+
+/* Specific Icons & Colors matching mockup */
+.kpiIconInquiry {
+    font-size: 24px !important;
+    color: #a142ad !important; /* Purple/pink */
+}
+
+.kpiIconDelivery {
+    font-size: 24px !important;
+    color: #0070f2 !important; /* Blue */
+}
+
+.kpiIconQuotation {
+    font-size: 24px !important;
+    color: #d04383 !important; /* Magenta/pink */
+}
+
+.kpiIconBilling {
+    font-size: 24px !important;
+    color: #e69d00 !important; /* Yellow/orange */
+}
+
+.kpiIconSalesOrder {
+    font-size: 24px !important;
+    color: #2b7d2b !important; /* Green */
+}
+
+.kpiIconPayment {
+    font-size: 24px !important;
+    color: #107e3e !important; /* Emerald green */
+}
+
+/* 5. Chart Card */
+.chartCardBorder {
+    border: 1.5px solid #d3d3d3;
+    border-radius: 6px;
+    padding: 0.8rem;
+    background: #ffffff;
+}
+
+.chartTitleHeader {
+    font-weight: bold !important;
+    color: #333333;
+}
+
+/* 6. Overview Table */
+.customOverviewTable .sapUiTableHdr {
+    background-color: #f7f9fa;
+}
+
+.tableHeaderLabel {
+    font-weight: bold !important;
+    color: #111111 !important;
+    font-family: monospace, Arial, sans-serif;
+    font-size: 13px !important;
+}
+
+.salesPrefixText {
+    font-family: monospace;
+    font-size: 12px;
+    color: #444444;
+}
+
+.salesDocLink {
+    font-weight: bold !important;
+    color: #0070f2 !important;
+    font-size: 13px;
+}
+
+.fulfillmentStatusIcon {
+    font-size: 16px !important;
+}
+
+.fulfillmentTextBold {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.processPhaseText {
+    font-weight: 500;
+    color: #333333;
+}
+
+.greenCheckIcon {
+    font-size: 18px !important;
+}

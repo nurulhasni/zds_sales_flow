@@ -1,0 +1,285 @@
+<mvc:View
+    controllerName="zds.sales.flow.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:t="sap.ui.table"
+    xmlns:core="sap.ui.core"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    height="100%">
+
+    <!-- Shell Bar Top Nav -->
+    <VBox class="shellHeaderNav">
+        <HBox alignItems="Center" justifyContent="Start" class="shellHeaderBox">
+            <Button icon="sap-icon://nav-back" type="Transparent" class="shellBackButton"/>
+            <Text text="SAP" class="shellBrandText sapUiTinyMarginBegin sapUiMediumMarginEnd"/>
+            <Text text="SD - Document Flow &amp; Status Report" class="shellTitleText"/>
+        </HBox>
+    </VBox>
+
+    <f:DynamicPage id="dynamicPageId" headerExpanded="true">
+        <!-- Title Header -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="Selection Screen" level="H2" class="sectionTitleHeader"/>
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <!-- Selection Screen Filters -->
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <VBox class="filterBarContainer">
+                    <!-- Row 1 Filters -->
+                    <layout:HorizontalLayout allowWrapping="true" class="sapUiTinyMarginBottom">
+                        <VBox class="filterCell">
+                            <Label text="SD Document Type"/>
+                            <Select selectedKey="{filterModel>/docType}" width="12rem">
+                                <core:Item key="Sales Order" text="Sales Order"/>
+                                <core:Item key="Inquiry" text="Inquiry"/>
+                                <core:Item key="Quotation" text="Quotation"/>
+                                <core:Item key="Delivery" text="Delivery"/>
+                                <core:Item key="Billing" text="Billing"/>
+                            </Select>
+                        </VBox>
+                        <VBox class="filterCell">
+                            <Label text="SD Document Number"/>
+                            <Input value="{filterModel>/docNum}" width="12rem" placeholder=""/>
+                        </VBox>
+                        <VBox class="filterCell">
+                            <Label text="Sold-to Party"/>
+                            <Input value="{filterModel>/soldTo}" width="12rem" placeholder=""/>
+                        </VBox>
+                        <VBox class="filterCell">
+                            <Label text="Customer Reference"/>
+                            <Input value="{filterModel>/custRef}" width="12rem" placeholder=""/>
+                        </VBox>
+                        <VBox class="filterCell">
+                            <Label text="Document Date"/>
+                            <DatePicker value="{filterModel>/docDate}" width="12rem"/>
+                        </VBox>
+                    </layout:HorizontalLayout>
+
+                    <!-- Row 2 Filters & Buttons -->
+                    <HBox justifyContent="SpaceBetween" alignItems="End" wrap="Wrap">
+                        <layout:HorizontalLayout allowWrapping="true">
+                            <VBox class="filterCell">
+                                <Label text="Sales Employee"/>
+                                <Input value="{filterModel>/salesEmp}" width="12rem"/>
+                            </VBox>
+                            <VBox class="filterCell">
+                                <Label text="Sales Organization"/>
+                                <Input value="{filterModel>/salesOrg}" width="12rem"/>
+                            </VBox>
+                            <VBox class="filterCell">
+                                <Label text="Distribution Channel"/>
+                                <Input value="{filterModel>/distChannel}" width="12rem"/>
+                            </VBox>
+                            <VBox class="filterCell">
+                                <Label text="Division"/>
+                                <Input value="{filterModel>/division}" width="12rem"/>
+                            </VBox>
+                        </layout:HorizontalLayout>
+
+                        <!-- Action Buttons -->
+                        <HBox class="sapUiTinyMarginTop">
+                            <Button text="Go" type="Emphasized" press="onSearch" class="sapUiTinyMarginEnd" width="5rem"/>
+                            <Button text="Adapt Filter" type="Transparent" press="onAdaptFilter"/>
+                        </HBox>
+                    </HBox>
+                </VBox>
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <!-- Page Main Content Area -->
+        <f:content>
+            <VBox class="sapUiSmallMargin">
+                <!-- SECTION 1: Document Flow Summary -->
+                <VBox class="sectionCardBox sapUiMediumMarginBottom">
+                    <!-- Summary Toolbar -->
+                    <OverflowToolbar class="customSectionToolbar">
+                        <Title text="Document Flow Summary" level="H3" class="sectionTitleText"/>
+                        <ToolbarSpacer/>
+                        <Link text="Details" class="sapUiTinyMarginEnd"/>
+                        <Text text="View By" class="sapUiTinyMarginEnd"/>
+                        <Button icon="sap-icon://table-view" type="Transparent"/>
+                        <Button icon="sap-icon://search" type="Transparent"/>
+                        <Button icon="sap-icon://zoom-in" type="Transparent"/>
+                        <Button icon="sap-icon://action-settings" type="Transparent"/>
+                        <Button icon="sap-icon://full-screen" type="Transparent"/>
+                        <Button icon="sap-icon://bar-chart" type="Transparent"/>
+                        <Button icon="sap-icon://grid" type="Transparent"/>
+                        <Button icon="sap-icon://overflow" type="Transparent"/>
+                    </OverflowToolbar>
+
+                    <!-- KPI Tiles (Left) & Total Issue Chart (Right) -->
+                    <layout:Grid defaultSpan="XL6 L6 M12 S12" class="sapUiSmallMargin">
+                        <!-- Left: 6 KPI Cards (2 Columns x 3 Rows) -->
+                        <VBox>
+                            <HBox class="sapUiTinyMarginBottom" justifyContent="SpaceBetween">
+                                <!-- Tile 1: Inquiry -->
+                                <VBox class="kpiCustomTile kpiTileInquiry" width="48%" press=".onTilePress('Inquiry')">
+                                    <HBox justifyContent="SpaceBetween" alignItems="Center">
+                                        <VBox>
+                                            <Text text="Inquiry" class="kpiTileLabel"/>
+                                            <Text text="{kpiModel>/inquiryCount}" class="kpiTileValue"/>
+                                        </VBox>
+                                        <core:Icon src="sap-icon://group" class="kpiIconInquiry"/>
+                                    </HBox>
+                                </VBox>
+                                <!-- Tile 2: Delivery -->
+                                <VBox class="kpiCustomTile kpiTileDelivery" width="48%" press=".onTilePress('Delivery')">
+                                    <HBox justifyContent="SpaceBetween" alignItems="Center">
+                                        <VBox>
+                                            <Text text="Delivery" class="kpiTileLabel"/>
+                                            <Text text="{kpiModel>/deliveryCount}" class="kpiTileValue"/>
+                                        </VBox>
+                                        <core:Icon src="sap-icon://shipping-status" class="kpiIconDelivery"/>
+                                    </HBox>
+                                </VBox>
+                            </HBox>
+
+                            <HBox class="sapUiTinyMarginBottom" justifyContent="SpaceBetween">
+                                <!-- Tile 3: Quotation -->
+                                <VBox class="kpiCustomTile kpiTileQuotation" width="48%" press=".onTilePress('Quotation')">
+                                    <HBox justifyContent="SpaceBetween" alignItems="Center">
+                                        <VBox>
+                                            <Text text="Quotation" class="kpiTileLabel"/>
+                                            <Text text="{kpiModel>/quotationCount}" class="kpiTileValue"/>
+                                        </VBox>
+                                        <core:Icon src="sap-icon://edit" class="kpiIconQuotation"/>
+                                    </HBox>
+                                </VBox>
+                                <!-- Tile 4: Billing -->
+                                <VBox class="kpiCustomTile kpiTileBilling" width="48%" press=".onTilePress('Billing')">
+                                    <HBox justifyContent="SpaceBetween" alignItems="Center">
+                                        <VBox>
+                                            <Text text="Billing" class="kpiTileLabel"/>
+                                            <Text text="{kpiModel>/billingCount}" class="kpiTileValue"/>
+                                        </VBox>
+                                        <core:Icon src="sap-icon://sales-document" class="kpiIconBilling"/>
+                                    </HBox>
+                                </VBox>
+                            </HBox>
+
+                            <HBox justifyContent="SpaceBetween">
+                                <!-- Tile 5: Sales Order -->
+                                <VBox class="kpiCustomTile kpiTileSalesOrder" width="48%" press=".onTilePress('Sales Order')">
+                                    <HBox justifyContent="SpaceBetween" alignItems="Center">
+                                        <VBox>
+                                            <Text text="Sales Order" class="kpiTileLabel"/>
+                                            <Text text="{kpiModel>/salesOrderCount}" class="kpiTileValue"/>
+                                        </VBox>
+                                        <core:Icon src="sap-icon://display" class="kpiIconSalesOrder"/>
+                                    </HBox>
+                                </VBox>
+                                <!-- Tile 6: Payment -->
+                                <VBox class="kpiCustomTile kpiTilePayment" width="48%" press=".onTilePress('Payment')">
+                                    <HBox justifyContent="SpaceBetween" alignItems="Center">
+                                        <VBox>
+                                            <Text text="Payment" class="kpiTileLabel"/>
+                                            <Text text="{kpiModel>/paymentCount}" class="kpiTileValue"/>
+                                        </VBox>
+                                        <core:Icon src="sap-icon://lead" class="kpiIconPayment"/>
+                                    </HBox>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+
+                        <!-- Right: Total Issue Bar Chart -->
+                        <VBox class="chartCardBorder">
+                            <Title text="Total Issue" level="H4" class="chartTitleHeader sapUiSmallMarginBottom" alignment="Center"/>
+                            <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" vizType="bar" width="100%" height="190px">
+                                <viz:dataset>
+                                    <viz.data:FlattenedDataset data="{chartData>/issues}">
+                                        <viz.data:dimensions>
+                                            <viz.data:DimensionDefinition name="Indicator" value="{chartData>name}"/>
+                                        </viz.data:dimensions>
+                                        <viz.data:measures>
+                                            <viz.data:MeasureDefinition name="Quantity" value="{chartData>value}"/>
+                                        </viz.data:measures>
+                                    </viz.data:FlattenedDataset>
+                                </viz:dataset>
+                                <viz:feeds>
+                                    <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Quantity"/>
+                                    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Indicator"/>
+                                </viz:feeds>
+                            </viz:VizFrame>
+                        </VBox>
+                    </layout:Grid>
+                </VBox>
+
+                <!-- SECTION 2: Document Flow Overview Table -->
+                <VBox class="sectionCardBox">
+                    <OverflowToolbar class="customSectionToolbar">
+                        <Title text="Document Flow Overview" level="H3" class="sectionTitleText"/>
+                        <ToolbarSpacer/>
+                        <Button icon="sap-icon://filter" type="Transparent"/>
+                        <Button icon="sap-icon://group-2" type="Transparent"/>
+                        <Button icon="sap-icon://action-settings" type="Transparent"/>
+                        <Button icon="sap-icon://excel-attachment" type="Transparent"/>
+                        <Button icon="sap-icon://overflow" type="Transparent"/>
+                    </OverflowToolbar>
+
+                    <t:Table
+                        id="tblDocOverview"
+                        rows="{headerModel>/DocHeader}"
+                        visibleRowCount="5"
+                        selectionMode="None"
+                        class="customOverviewTable">
+                        <t:columns>
+                            <!-- Column 1: SD Document Number (5) -->
+                            <t:Column width="16rem">
+                                <Label text="SD Document Number (5)" class="tableHeaderLabel"/>
+                                <t:template>
+                                    <HBox alignItems="Center">
+                                        <Text text="SALS! " class="salesPrefixText"/>
+                                        <Link text="{headerModel>SalesDocument}" press="onExpandRow" class="salesDocLink"/>
+                                    </HBox>
+                                </t:template>
+                            </t:Column>
+
+                            <!-- Column 2: Overall Fulfillment -->
+                            <t:Column width="14rem">
+                                <Label text="Overall Fulfillment" class="tableHeaderLabel"/>
+                                <t:template>
+                                    <HBox alignItems="Center">
+                                        <core:Icon
+                                            src="{headerModel>FulfillmentIcon}"
+                                            state="{headerModel>FulfillmentState}"
+                                            class="fulfillmentStatusIcon sapUiTinyMarginEnd"/>
+                                        <Text text="{headerModel>FulfillmentText}" class="fulfillmentTextBold"/>
+                                    </HBox>
+                                </t:template>
+                            </t:Column>
+
+                            <!-- Column 3: Process Phase -->
+                            <t:Column width="16rem">
+                                <Label text="Process Phase" class="tableHeaderLabel"/>
+                                <t:template>
+                                    <Text text="{headerModel>ProcessPhase}" class="processPhaseText"/>
+                                </t:template>
+                            </t:Column>
+
+                            <!-- Column 4: Order Processing -->
+                            <t:Column width="14rem">
+                                <Label text="Order Processing" class="tableHeaderLabel"/>
+                                <t:template>
+                                    <HBox alignItems="Center">
+                                        <core:Icon src="sap-icon://sys-enter-2" color="#2b7d2b" class="sapUiTinyMarginEnd greenCheckIcon"/>
+                                        <Button icon="sap-icon://navigation-right-arrow" type="Transparent" press="onExpandRow" tooltip="View Process Flow"/>
+                                    </HBox>
+                                </t:template>
+                            </t:Column>
+                        </t:columns>
+                    </t:Table>
+                </VBox>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

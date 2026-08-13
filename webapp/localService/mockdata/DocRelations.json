@@ -1,0 +1,74 @@
+[
+  {
+    "AnchorSalesDocument": "0000001001",
+    "DocNumber": "20000001",
+    "DocCategory": "B",
+    "DocTitle": "Quotation Part",
+    "Status": "Positive",
+    "StatusText": "Fully Referenced",
+    "CreatedOnDate": "2026-07-28",
+    "CreatedBy": "CB4100000012",
+    "SubsequentDocs": "node_0000001001",
+    "AdditionalInfo": ""
+  },
+  {
+    "AnchorSalesDocument": "0000001001",
+    "DocNumber": "0000001001",
+    "DocCategory": "C",
+    "DocTitle": "Sales Order Part",
+    "Status": "Positive",
+    "StatusText": "Complete",
+    "CreatedOnDate": "2026-08-01",
+    "CreatedBy": "CB4100000012",
+    "SubsequentDocs": "node_80000045",
+    "AdditionalInfo": ""
+  },
+  {
+    "AnchorSalesDocument": "0000001001",
+    "DocNumber": "80000045",
+    "DocCategory": "J",
+    "DocTitle": "Part Delivery",
+    "Status": "Positive",
+    "StatusText": "Shipped",
+    "CreatedOnDate": "2026-08-02",
+    "CreatedBy": "CB4100000012",
+    "SubsequentDocs": "node_49000012",
+    "AdditionalInfo": ""
+  },
+  {
+    "AnchorSalesDocument": "0000001001",
+    "DocNumber": "49000012",
+    "DocCategory": "R",
+    "DocTitle": "Goods Issue",
+    "Status": "Positive",
+    "StatusText": "Completed",
+    "CreatedOnDate": "2026-08-02",
+    "CreatedBy": "CB4100000012",
+    "SubsequentDocs": "node_90000012",
+    "AdditionalInfo": ""
+  },
+  {
+    "AnchorSalesDocument": "0000001001",
+    "DocNumber": "90000012",
+    "DocCategory": "M",
+    "DocTitle": "Invoice Part",
+    "Status": "Positive",
+    "StatusText": "Cleared",
+    "CreatedOnDate": "2026-08-04",
+    "CreatedBy": "CB4100000012",
+    "SubsequentDocs": "node_100000088",
+    "AdditionalInfo": ""
+  },
+  {
+    "AnchorSalesDocument": "0000001001",
+    "DocNumber": "100000088",
+    "DocCategory": "g",
+    "DocTitle": "Journal Entry",
+    "Status": "Positive",
+    "StatusText": "Cleared",
+    "CreatedOnDate": "2026-08-04",
+    "CreatedBy": "CB4100000012",
+    "SubsequentDocs": "",
+    "AdditionalInfo": ""
+  }
+]

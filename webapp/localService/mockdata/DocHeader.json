@@ -1,0 +1,54 @@
+{
+  "DocHeader": [
+    {
+      "SalesDocument": "0000001001",
+      "CreatedOn": "2026-08-01",
+      "CreatedBy": "CB4100000012",
+      "DocumentDate": "2026-08-01",
+      "DocumentCategory": "C",
+      "RequestedDelivDate": "2026-08-15",
+      "RejectionStatus": "A",
+      "RejectionStatusText": "Not Blocked"
+    },
+    {
+      "SalesDocument": "0000001002",
+      "CreatedOn": "2026-08-03",
+      "CreatedBy": "CB4100000014",
+      "DocumentDate": "2026-08-03",
+      "DocumentCategory": "C",
+      "RequestedDelivDate": "2026-08-18",
+      "RejectionStatus": "C",
+      "RejectionStatusText": "Blocked"
+    },
+    {
+      "SalesDocument": "0000001003",
+      "CreatedOn": "2026-08-05",
+      "CreatedBy": "CB4100000012",
+      "DocumentDate": "2026-08-05",
+      "DocumentCategory": "C",
+      "RequestedDelivDate": "2026-08-20",
+      "RejectionStatus": "A",
+      "RejectionStatusText": "Not Blocked"
+    },
+    {
+      "SalesDocument": "0000001004",
+      "CreatedOn": "2026-08-07",
+      "CreatedBy": "CB4100000015",
+      "DocumentDate": "2026-08-07",
+      "DocumentCategory": "C",
+      "RequestedDelivDate": "2026-08-22",
+      "RejectionStatus": "B",
+      "RejectionStatusText": "Partially Blocked"
+    },
+    {
+      "SalesDocument": "0000001005",
+      "CreatedOn": "2026-08-10",
+      "CreatedBy": "CB4100000018",
+      "DocumentDate": "2026-08-10",
+      "DocumentCategory": "C",
+      "RequestedDelivDate": "2026-08-25",
+      "RejectionStatus": "A",
+      "RejectionStatusText": "Not Blocked"
+    }
+  ]
+}

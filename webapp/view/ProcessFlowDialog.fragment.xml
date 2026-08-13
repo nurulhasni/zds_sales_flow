@@ -1,0 +1,22 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+    <Dialog title="Document Process Flow - {flowModel>/currentSO}" contentWidth="920px" contentHeight="520px" draggable="true" resizable="true">
+        <content>
+            <VBox class="sapUiSmallMargin" height="420px">
+                <Text text="Process Flow for Sales Document: {flowModel>/currentSO}" class="sapUiSmallMarginBottom"/>
+                <List items="{flowModel>/nodes}">
+                    <StandardListItem
+                        title="{flowModel>title} ({flowModel>subtitle})"
+                        description="{flowModel>stateText}"
+                        icon="sap-icon://process"
+                        info="{flowModel>laneId}"
+                        highlight="{= ${flowModel>state} === 'Positive' ? 'Success' : (${flowModel>state} === 'Critical' ? 'Warning' : (${flowModel>state} === 'Negative' ? 'Error' : 'None'))}"/>
+                </List>
+            </VBox>
+        </content>
+        <beginButton>
+            <Button text="Close" type="Emphasized" press="onCloseDialog"/>
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

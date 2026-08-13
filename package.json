@@ -1,0 +1,15 @@
+{
+  "name": "zds_sales_flow",
+  "version": "1.0.0",
+  "description": "SD - Document Flow & Status Report",
+  "private": true,
+  "scripts": {
+    "start": "ui5 serve --open index.html",
+    "build": "ui5 build --clean-dest"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@ui5/cli": "^3.0.0",
+    "serve": "^14.2.0"
+  }
+}
