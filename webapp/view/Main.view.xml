@@ -2,12 +2,394 @@
     controllerName="zds.sales.flow.controller.Main"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
     xmlns:core="sap.ui.core"
     height="100%">
 
-    <Page showHeader="false" enableScrolling="true" backgroundDesign="Solid" class="sapUiNoContentPadding">
+    <Page id="mainPage" showHeader="true" enableScrolling="true" backgroundDesign="Solid" class="sapUiNoContentPadding">
+        
+        <!-- 1. TOP HEADER BAR matching Stitch Navy #004da4 -->
+        <customHeader>
+            <Bar class="stitchShellHeader">
+                <contentLeft>
+                    <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiTinyMarginEnd"/>
+                    <core:Icon src="sap-icon://grid" class="stitchWhiteIcon sapUiTinyMarginEnd"/>
+                    <Text text="SAP" class="stitchBrandTitle"/>
+                    <Text text="|" class="stitchDivider sapUiTinyMarginBeginEnd"/>
+                    <Title text="SD - Document Flow &amp; Status Report" class="stitchAppTitle"/>
+                </contentLeft>
+            </Bar>
+        </customHeader>
+
         <content>
-            <core:HTML id="stitchHtmlContainer" preferDOM="false" />
+            <VBox class="sapUiSmallMargin">
+
+                <!-- 2. SELECTION SCREEN (FILTER BAR) -->
+                <Panel expandable="true" expanded="true" headerText="Selection Screen" class="stitchCard sapUiSmallMarginBottom">
+                    <layout:Grid defaultSpan="XL2 L3 M4 S12" class="sapUiTinyMarginTop">
+                        <VBox class="sapUiTinyMarginBottom">
+                            <Label text="SD Document Type" class="stitchLabel"/>
+                            <Select selectedKey="{filterModel>/docType}" width="100%">
+                                <core:Item key="Sales Order" text="Sales Order"/>
+                                <core:Item key="Quotation" text="Quotation"/>
+                            </Select>
+                        </VBox>
+
+                        <VBox class="sapUiTinyMarginBottom">
+                            <Label text="SD Document Number" class="stitchLabel"/>
+                            <Input value="{filterModel>/docNum}" width="100%"/>
+                        </VBox>
+
+                        <VBox class="sapUiTinyMarginBottom">
+                            <Label text="Sold-to Party" class="stitchLabel"/>
+                            <Input value="{filterModel>/soldTo}" width="100%"/>
+                        </VBox>
+
+                        <VBox class="sapUiTinyMarginBottom">
+                            <Label text="Customer Reference" class="stitchLabel"/>
+                            <Input value="{filterModel>/custRef}" width="100%"/>
+                        </VBox>
+
+                        <VBox class="sapUiTinyMarginBottom">
+                            <Label text="Document Date" class="stitchLabel"/>
+                            <DatePicker value="{filterModel>/docDate}" width="100%"/>
+                        </VBox>
+
+                        <VBox class="sapUiTinyMarginBottom">
+                            <Label text="Sales Employee" class="stitchLabel"/>
+                            <Input value="{filterModel>/salesEmp}" width="100%"/>
+                        </VBox>
+
+                        <VBox class="sapUiTinyMarginBottom">
+                            <Label text="Sales Organization" class="stitchLabel"/>
+                            <Input value="{filterModel>/salesOrg}" width="100%"/>
+                        </VBox>
+
+                        <VBox class="sapUiTinyMarginBottom">
+                            <Label text="Distribution Channel" class="stitchLabel"/>
+                            <Input value="{filterModel>/distChannel}" width="100%"/>
+                        </VBox>
+
+                        <VBox class="sapUiTinyMarginBottom">
+                            <Label text="Division" class="stitchLabel"/>
+                            <Input value="{filterModel>/division}" width="100%"/>
+                        </VBox>
+
+                        <!-- Go & Adapt Filter Buttons -->
+                        <HBox alignItems="Center" class="sapUiTinyMarginTop">
+                            <Button text="Go" type="Emphasized" press="onSearch" class="stitchBtnPrimary sapUiSmallMarginEnd" width="6rem"/>
+                            <Link text="Adapt Filter" press="onAdaptFilter" class="stitchLinkBlue"/>
+                        </HBox>
+                    </layout:Grid>
+                </Panel>
+
+                <!-- 3. DOCUMENT FLOW SUMMARY & CHART AREA -->
+                <layout:Grid defaultSpan="XL12 L12 M12 S12" class="sapUiSmallMarginBottom">
+
+                    <!-- Left: 4 Columns (6 KPI Status Cards with 4px left-border accent) -->
+                    <VBox class="stitchCard">
+                        <layoutData>
+                            <layout:GridData span="XL4 L4 M12 S12"/>
+                        </layoutData>
+
+                        <Title text="Document Flow Summary" level="H3" class="stitchSectionTitle sapUiSmallMarginBottom"/>
+
+                        <layout:Grid defaultSpan="XL6 L6 M6 S12" class="sapUiTinyMarginTop">
+                            <!-- Card 1: Inquiry -->
+                            <HBox class="stitchKpiTile stitchKpiInquiry">
+                                <HBox justifyContent="SpaceBetween" alignItems="Center" width="100%">
+                                    <core:Icon src="sap-icon://group" class="stitchKpiIconInquiry"/>
+                                    <VBox alignItems="End">
+                                        <Text text="Inquiry" class="stitchKpiLabel stitchKpiLabelInquiry"/>
+                                        <Text text="{kpiModel>/inquiryCount}" class="stitchKpiValue stitchKpiValueInquiry"/>
+                                    </VBox>
+                                </HBox>
+                            </HBox>
+
+                            <!-- Card 2: Delivery -->
+                            <HBox class="stitchKpiTile stitchKpiDelivery">
+                                <HBox justifyContent="SpaceBetween" alignItems="Center" width="100%">
+                                    <core:Icon src="sap-icon://shipping-status" class="stitchKpiIconDelivery"/>
+                                    <VBox alignItems="End">
+                                        <Text text="Delivery" class="stitchKpiLabel stitchKpiLabelDelivery"/>
+                                        <Text text="{kpiModel>/deliveryCount}" class="stitchKpiValue stitchKpiValueDelivery"/>
+                                    </VBox>
+                                </HBox>
+                            </HBox>
+
+                            <!-- Card 3: Quotation -->
+                            <HBox class="stitchKpiTile stitchKpiQuotation">
+                                <HBox justifyContent="SpaceBetween" alignItems="Center" width="100%">
+                                    <core:Icon src="sap-icon://edit" class="stitchKpiIconQuotation"/>
+                                    <VBox alignItems="End">
+                                        <Text text="Quotation" class="stitchKpiLabel stitchKpiLabelQuotation"/>
+                                        <Text text="{kpiModel>/quotationCount}" class="stitchKpiValue stitchKpiValueQuotation"/>
+                                    </VBox>
+                                </HBox>
+                            </HBox>
+
+                            <!-- Card 4: Billing -->
+                            <HBox class="stitchKpiTile stitchKpiBilling">
+                                <HBox justifyContent="SpaceBetween" alignItems="Center" width="100%">
+                                    <core:Icon src="sap-icon://sales-document" class="stitchKpiIconBilling"/>
+                                    <VBox alignItems="End">
+                                        <Text text="Billing" class="stitchKpiLabel stitchKpiLabelBilling"/>
+                                        <Text text="{kpiModel>/billingCount}" class="stitchKpiValue stitchKpiValueBilling"/>
+                                    </VBox>
+                                </HBox>
+                            </HBox>
+
+                            <!-- Card 5: Sales Order -->
+                            <HBox class="stitchKpiTile stitchKpiSalesOrder">
+                                <HBox justifyContent="SpaceBetween" alignItems="Center" width="100%">
+                                    <core:Icon src="sap-icon://display" class="stitchKpiIconSalesOrder"/>
+                                    <VBox alignItems="End">
+                                        <Text text="Sales Order" class="stitchKpiLabel stitchKpiLabelSalesOrder"/>
+                                        <Text text="{kpiModel>/salesOrderCount}" class="stitchKpiValue stitchKpiValueSalesOrder"/>
+                                    </VBox>
+                                </HBox>
+                            </HBox>
+
+                            <!-- Card 6: Payment -->
+                            <HBox class="stitchKpiTile stitchKpiPayment">
+                                <HBox justifyContent="SpaceBetween" alignItems="Center" width="100%">
+                                    <core:Icon src="sap-icon://lead" class="stitchKpiIconPayment"/>
+                                    <VBox alignItems="End">
+                                        <Text text="Payment" class="stitchKpiLabel stitchKpiLabelPayment"/>
+                                        <Text text="{kpiModel>/paymentCount}" class="stitchKpiValue stitchKpiValuePayment"/>
+                                    </VBox>
+                                </HBox>
+                            </HBox>
+                        </layout:Grid>
+                    </VBox>
+
+                    <!-- Right: 8 Columns (Total Issue Bar Chart) -->
+                    <VBox class="stitchChartBox">
+                        <layoutData>
+                            <layout:GridData span="XL8 L8 M12 S12"/>
+                        </layoutData>
+
+                        <!-- Chart Header Toolbar Links & Icons -->
+                        <HBox justifyContent="End" alignItems="Center" class="sapUiTinyMarginBottom">
+                            <Link text="Details" class="stitchLinkBlue sapUiSmallMarginEnd"/>
+                            <Link text="View By" class="stitchLinkBlue sapUiSmallMarginEnd"/>
+                            <Button icon="sap-icon://table-view" type="Transparent"/>
+                            <Button icon="sap-icon://pie-chart" type="Transparent"/>
+                            <Button icon="sap-icon://bar-chart" type="Transparent"/>
+                            <Text text="|" class="stitchDividerLight sapUiTinyMarginBeginEnd"/>
+                            <Button icon="sap-icon://action-settings" type="Transparent"/>
+                            <Button icon="sap-icon://full-screen" type="Transparent"/>
+                            <Button icon="sap-icon://download" type="Transparent"/>
+                            <Button icon="sap-icon://overflow" type="Transparent"/>
+                        </HBox>
+
+                        <!-- Total Issue Bar Chart -->
+                        <VBox class="sapUiSmallMarginBottom">
+                            <Title text="Total Issue" level="H4" class="stitchSectionTitle sapUiTinyMarginBottom"/>
+                            
+                            <VBox items="{chartData>/issues}" class="sapUiTinyMarginTop">
+                                <items>
+                                    <VBox class="sapUiTinyMarginBottom">
+                                        <HBox justifyContent="SpaceBetween" alignItems="Center">
+                                            <Text text="{chartData>name}" class="stitchLabel"/>
+                                            <Text text="{chartData>value}%" class="stitchLabel"/>
+                                        </HBox>
+                                        <ProgressIndicator percentValue="{chartData>value}" displayValue="" state="Information" height="10px"/>
+                                    </VBox>
+                                </items>
+                            </VBox>
+                        </VBox>
+                    </VBox>
+                </layout:Grid>
+
+                <!-- 4. DOCUMENT FLOW OVERVIEW TABLE & PROCESS FLOW DIAGRAM -->
+                <VBox class="stitchCard sapUiSmallMarginBottom">
+                    <!-- Overview Toolbar -->
+                    <OverflowToolbar>
+                        <Title text="Document Flow Overview" level="H3" class="stitchSectionTitle"/>
+                        <ToolbarSpacer/>
+                        <Button icon="sap-icon://filter" type="Transparent"/>
+                        <Button icon="sap-icon://group-2" type="Transparent"/>
+                        <Button icon="sap-icon://action-settings" type="Transparent"/>
+                        <Button icon="sap-icon://excel-attachment" type="Transparent"/>
+                    </OverflowToolbar>
+
+                    <!-- Table Header Row -->
+                    <HBox class="stitchTableHeaderRow" alignItems="Center">
+                        <Text text="SD Document Number (5)" width="30%" class="stitchLabel"/>
+                        <Text text="Overall Fulfillment" width="22%" class="stitchLabel"/>
+                        <Text text="Process Phase" width="28%" class="stitchLabel"/>
+                        <Text text="Order Processing" width="20%" class="stitchLabel"/>
+                    </HBox>
+
+                    <!-- Document Rows -->
+                    <List items="{headerModel>/DocHeader}" showSeparators="None">
+                        <CustomListItem type="Inactive">
+                            <VBox class="stitchTableRow">
+                                <!-- Main Row -->
+                                <HBox alignItems="Center" class="sapUiTinyMarginTopBottom">
+                                    <HBox width="30%" alignItems="Center">
+                                        <Text text="## " class="stitchPrefixNum"/>
+                                        <Link text="{headerModel>SalesDocument}" press="onToggleRowExpansion" class="stitchDocLink"/>
+                                    </HBox>
+
+                                    <HBox width="22%" alignItems="Center">
+                                        <core:Icon src="{headerModel>FulfillmentIcon}" class="sapUiTinyMarginEnd"/>
+                                    </HBox>
+
+                                    <HBox width="28%" alignItems="Center">
+                                        <Text text="{headerModel>ProcessPhase}" class="stitchPhaseText"/>
+                                    </HBox>
+
+                                    <HBox width="20%" justifyContent="SpaceBetween" alignItems="Center">
+                                        <core:Icon src="sap-icon://sys-enter-2" class="stitchStatusSuccess"/>
+                                        <Button icon="{= ${headerModel>IsExpanded} ? 'sap-icon://navigation-down-arrow' : 'sap-icon://navigation-right-arrow' }" type="Transparent" press="onToggleRowExpansion"/>
+                                    </HBox>
+                                </HBox>
+
+                                <!-- INLINE PROCESS FLOW DIAGRAM (shown when row is expanded) -->
+                                <VBox visible="{headerModel>IsExpanded}" class="processFlowContainer">
+                                    <Title text="Process Flow" level="H3" class="stitchSectionTitle sapUiSmallMarginBottom"/>
+
+                                    <ScrollContainer horizontal="true" vertical="false" width="100%">
+                                        <HBox alignItems="Start" class="flowDiagramRow">
+
+                                            <!-- CARD 1: Quotation Part -->
+                                            <VBox class="docFlowCard">
+                                                <Text text="Quotation Part" class="docCardHeaderTitle"/>
+                                                <Text text="451010001" class="docCardNumber"/>
+                                                <HBox alignItems="Center" class="docCardStatusRow">
+                                                    <core:Icon src="sap-icon://sys-enter-2" class="docCardStatusIcon"/>
+                                                    <Text text="Fully Reference" class="docCardStatusText"/>
+                                                </HBox>
+                                                <VBox class="sapUiTinyMarginTop">
+                                                    <Text text="Created on : 19.06.2026" class="docCardMetaText"/>
+                                                    <Text text="Created by : Shodiq" class="docCardMetaText"/>
+                                                    <Text text="Valid to : 29.06.2026" class="docCardMetaText"/>
+                                                </VBox>
+                                            </VBox>
+
+                                            <!-- CONNECTOR 1 -->
+                                            <VBox class="flowConnectorHorizontal">
+                                                <HBox alignItems="Center" width="100%">
+                                                    <VBox class="flowConnectorLine"/>
+                                                    <VBox class="flowConnectorArrow"/>
+                                                </HBox>
+                                            </VBox>
+
+                                            <!-- CARD 2: Sales Order Part -->
+                                            <VBox class="docFlowCard">
+                                                <Text text="Sales order part" class="docCardHeaderTitle"/>
+                                                <Text text="{headerModel>SalesDocument}" class="docCardNumber"/>
+                                                <HBox alignItems="Center" class="docCardStatusRow">
+                                                    <core:Icon src="sap-icon://sys-enter-2" class="docCardStatusIcon"/>
+                                                    <Text text="Complete" class="docCardStatusText"/>
+                                                </HBox>
+                                                <VBox class="sapUiTinyMarginTop">
+                                                    <Text text="Created on : 19.06.2026" class="docCardMetaText"/>
+                                                    <Text text="Created by : Shodiq" class="docCardMetaText"/>
+                                                    <Text text="Request Deliv Date : 03.07.2026" class="docCardMetaText"/>
+                                                </VBox>
+                                            </VBox>
+
+                                            <!-- CONNECTOR 2 -->
+                                            <VBox class="flowConnectorHorizontal">
+                                                <HBox alignItems="Center" width="100%">
+                                                    <VBox class="flowConnectorLine"/>
+                                                    <VBox class="flowConnectorArrow"/>
+                                                </HBox>
+                                            </VBox>
+
+                                            <!-- CARD 3 COLUMN: Part Delivery + Goods Issue Branch -->
+                                            <VBox>
+                                                <VBox class="docFlowCard stitchActiveCard">
+                                                    <Text text="Part Delivery" class="docCardHeaderTitle"/>
+                                                    <Text text="520000245" class="docCardNumber"/>
+                                                    <HBox alignItems="Center" class="docCardStatusRow">
+                                                        <core:Icon src="sap-icon://sys-enter-2" class="docCardStatusIcon"/>
+                                                        <Text text="Shipped" class="docCardStatusText"/>
+                                                    </HBox>
+                                                    <VBox class="sapUiTinyMarginTop">
+                                                        <Text text="Created on : 01.07.2026" class="docCardMetaText"/>
+                                                        <Text text="Created by : Ajeng" class="docCardMetaText"/>
+                                                        <Text text="Picked on : 02.07.2026" class="docCardMetaText"/>
+                                                    </VBox>
+                                                </VBox>
+
+                                                <VBox class="branchColumnContainer">
+                                                    <VBox class="branchVerticalLine"/>
+                                                    <VBox class="branchArrowDown"/>
+                                                </VBox>
+
+                                                <VBox class="docFlowCard">
+                                                    <Text text="Goods Issue" class="docCardHeaderTitle"/>
+                                                    <Text text="4900001262" class="docCardNumber"/>
+                                                    <HBox alignItems="Center" class="docCardStatusRow">
+                                                        <core:Icon src="sap-icon://sys-enter-2" class="docCardStatusIcon"/>
+                                                        <Text text="Completed" class="docCardStatusText"/>
+                                                    </HBox>
+                                                    <VBox class="sapUiTinyMarginTop">
+                                                        <Text text="Created on : 01.07.2026" class="docCardMetaText"/>
+                                                        <Text text="Created by : Ajeng" class="docCardMetaText"/>
+                                                    </VBox>
+                                                </VBox>
+                                            </VBox>
+
+                                            <!-- CONNECTOR 3 -->
+                                            <VBox class="flowConnectorHorizontal">
+                                                <HBox alignItems="Center" width="100%">
+                                                    <VBox class="flowConnectorLine"/>
+                                                    <VBox class="flowConnectorArrow"/>
+                                                </HBox>
+                                            </VBox>
+
+                                            <!-- CARD 4: Invoice Part -->
+                                            <VBox class="docFlowCard">
+                                                <Text text="Invoice Part" class="docCardHeaderTitle"/>
+                                                <Text text="821000288" class="docCardNumber"/>
+                                                <HBox alignItems="Center" class="docCardStatusRow">
+                                                    <core:Icon src="sap-icon://sys-enter-2" class="docCardStatusIcon"/>
+                                                    <Text text="Completed" class="docCardStatusText"/>
+                                                </HBox>
+                                                <VBox class="sapUiTinyMarginTop">
+                                                    <Text text="Created on : 11.07.2026" class="docCardMetaText"/>
+                                                    <Text text="Created by : Putri" class="docCardMetaText"/>
+                                                    <Text text="Billed on : 11.07.2026" class="docCardMetaText"/>
+                                                </VBox>
+                                            </VBox>
+
+                                            <!-- CONNECTOR 4 -->
+                                            <VBox class="flowConnectorHorizontal">
+                                                <HBox alignItems="Center" width="100%">
+                                                    <VBox class="flowConnectorLine"/>
+                                                    <VBox class="flowConnectorArrow"/>
+                                                </HBox>
+                                            </VBox>
+
+                                            <!-- CARD 5: Journal Entry -->
+                                            <VBox class="docFlowCard">
+                                                <Text text="Journal Entry" class="docCardHeaderTitle"/>
+                                                <Text text="21000231" class="docCardNumber"/>
+                                                <HBox alignItems="Center" class="docCardStatusRow">
+                                                    <core:Icon src="sap-icon://sys-enter-2" class="docCardStatusIcon"/>
+                                                    <Text text="Cleared" class="docCardStatusText"/>
+                                                </HBox>
+                                                <VBox class="sapUiTinyMarginTop">
+                                                    <Text text="Created on : 11.07.2026" class="docCardMetaText"/>
+                                                    <Text text="Created by : Putri" class="docCardMetaText"/>
+                                                    <Text text="Posted on : 11.07.2026" class="docCardMetaText"/>
+                                                </VBox>
+                                            </VBox>
+
+                                        </HBox>
+                                    </ScrollContainer>
+                                </VBox>
+                            </VBox>
+                        </CustomListItem>
+                    </List>
+                </VBox>
+
+            </VBox>
         </content>
     </Page>
 </mvc:View>
