@@ -1,188 +1,307 @@
-/* SAPUI5 Custom Styling matching Mockup Design */
+/* Stitch SAP Fiori Style Design System */
 
-/* 1. Shell Header Nav */
-.shellHeaderNav {
-    background-color: #0f2537;
-    color: #ffffff;
-    padding: 0.4rem 1rem;
-}
-
-.shellHeaderBox {
-    height: 36px;
-}
-
-.shellBackButton {
+/* 1. Top Header Bar */
+.stitchShellHeader {
+    background-color: #004da4 !important;
     color: #ffffff !important;
+    padding: 0 1.5rem;
+    height: 48px;
 }
 
-.shellBackButton .sapMBtnIcon {
+.stitchBrandTitle {
     color: #ffffff !important;
-}
-
-.shellBrandText {
-    color: #ffffff !important;
-    font-weight: 700;
-    font-size: 15px;
-}
-
-.shellTitleText {
-    color: #ffffff !important;
-    font-weight: 600;
-    font-size: 15px;
-    font-family: monospace, Arial, sans-serif;
-}
-
-/* 2. Selection Screen & Filter Bar */
-.sectionTitleHeader {
-    font-weight: bold !important;
-    font-family: monospace, Arial, sans-serif !important;
-    letter-spacing: 0.5px;
-}
-
-.filterBarContainer {
-    padding: 0.5rem 0;
-}
-
-.filterCell {
-    margin-right: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.filterCell label {
-    font-weight: 600 !important;
-    font-size: 12px;
-    margin-bottom: 2px;
-}
-
-/* 3. Section Cards */
-.sectionCardBox {
-    background: #ffffff;
-    border-radius: 4px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-}
-
-.customSectionToolbar {
-    background: transparent !important;
-    border-bottom: none !important;
-    padding-left: 0.5rem !important;
-    padding-right: 0.5rem !important;
-}
-
-.sectionTitleText {
-    font-weight: bold !important;
-    font-family: monospace, Arial, sans-serif !important;
     font-size: 16px !important;
+    font-weight: 700 !important;
 }
 
-/* 4. KPI Custom Tiles (2x3 Grid matching mockup) */
-.kpiCustomTile {
+.stitchAppTitle {
+    color: #ffffff !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+}
+
+.stitchWhiteIcon {
+    color: #ffffff !important;
+    font-size: 20px !important;
+}
+
+.stitchDivider {
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.stitchDividerLight {
+    color: #d9d9d9 !important;
+}
+
+/* 2. Selection Screen & Inputs */
+.stitchCard {
     background: #ffffff;
-    border: 1.5px solid #333333;
+    border: 1px solid #d9d9d9;
     border-radius: 6px;
-    padding: 0.6rem 0.8rem;
+    padding: 1rem 1.2rem;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.05);
+}
+
+.stitchSectionTitle {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #1a1c1c !important;
+}
+
+.stitchLabel {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #424753 !important;
+    margin-bottom: 4px !important;
+}
+
+.stitchInput {
+    border: 1px solid #d9d9d9 !important;
+    padding: 4px 8px !important;
+    font-size: 14px !important;
+    border-radius: 2px !important;
+}
+
+.stitchBtnPrimary {
+    background-color: #0064d2 !important;
+    color: #ffffff !important;
+    border-radius: 4px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    border: none !important;
+}
+
+.stitchBtnPrimary .sapMBtnInner {
+    background-color: #0064d2 !important;
+    color: #ffffff !important;
+    border-radius: 4px !important;
+    border: none !important;
+}
+
+.stitchLinkBlue {
+    color: #0064d2 !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+}
+
+/* 3. KPI Tiles with Left Border Color Accent */
+.stitchKpiTile {
+    background: #ffffff;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 0.8rem 1rem;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.05);
     cursor: pointer;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.kpiCustomTile:hover {
+.stitchKpiTile:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    box-shadow: 0px 4px 8px rgba(0,100,210,0.12);
 }
 
-.kpiTileLabel {
-    font-size: 11px;
-    color: #555555;
-    font-weight: 600;
-}
+.stitchKpiInquiry { border-left: 4px solid #e2e2e2 !important; }
+.stitchKpiDelivery { border-left: 4px solid #0092d1 !important; }
+.stitchKpiQuotation { border-left: 4px solid #d10074 !important; }
+.stitchKpiBilling { border-left: 4px solid #e9730c !important; }
+.stitchKpiSalesOrder { border-left: 4px solid #107e3e !important; }
+.stitchKpiPayment { border-left: 4px solid #107e3e !important; }
 
-.kpiTileValue {
-    font-size: 16px;
-    font-weight: bold;
-    color: #222222;
-}
+.stitchKpiIconInquiry { color: #888888 !important; font-size: 28px !important; }
+.stitchKpiIconDelivery { color: #0092d1 !important; font-size: 28px !important; }
+.stitchKpiIconQuotation { color: #d10074 !important; font-size: 28px !important; }
+.stitchKpiIconBilling { color: #e9730c !important; font-size: 28px !important; }
+.stitchKpiIconSalesOrder { color: #107e3e !important; font-size: 28px !important; }
+.stitchKpiIconPayment { color: #107e3e !important; font-size: 28px !important; }
 
-/* Specific Icons & Colors matching mockup */
-.kpiIconInquiry {
-    font-size: 24px !important;
-    color: #a142ad !important; /* Purple/pink */
-}
+.stitchKpiLabel { font-size: 12px; font-weight: 600; }
+.stitchKpiValue { font-size: 20px; font-weight: 600; }
 
-.kpiIconDelivery {
-    font-size: 24px !important;
-    color: #0070f2 !important; /* Blue */
-}
+.stitchKpiLabelInquiry { color: #888888; }
+.stitchKpiValueInquiry { color: #888888; }
 
-.kpiIconQuotation {
-    font-size: 24px !important;
-    color: #d04383 !important; /* Magenta/pink */
-}
+.stitchKpiLabelDelivery { color: #0092d1; }
+.stitchKpiValueDelivery { color: #0092d1; }
 
-.kpiIconBilling {
-    font-size: 24px !important;
-    color: #e69d00 !important; /* Yellow/orange */
-}
+.stitchKpiLabelQuotation { color: #d10074; }
+.stitchKpiValueQuotation { color: #d10074; }
 
-.kpiIconSalesOrder {
-    font-size: 24px !important;
-    color: #2b7d2b !important; /* Green */
-}
+.stitchKpiLabelBilling { color: #e9730c; }
+.stitchKpiValueBilling { color: #e9730c; }
 
-.kpiIconPayment {
-    font-size: 24px !important;
-    color: #107e3e !important; /* Emerald green */
-}
+.stitchKpiLabelSalesOrder { color: #107e3e; }
+.stitchKpiValueSalesOrder { color: #107e3e; }
 
-/* 5. Chart Card */
-.chartCardBorder {
-    border: 1.5px solid #d3d3d3;
-    border-radius: 6px;
-    padding: 0.8rem;
+.stitchKpiLabelPayment { color: #107e3e; }
+.stitchKpiValuePayment { color: #107e3e; }
+
+/* 4. Chart Card Area */
+.stitchChartBox {
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 1rem;
     background: #ffffff;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.05);
 }
 
-.chartTitleHeader {
-    font-weight: bold !important;
-    color: #333333;
+.stitchBarFill {
+    background-color: #0064d2;
+    height: 12px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
-/* 6. Overview Table */
-.customOverviewTable .sapUiTableHdr {
-    background-color: #f7f9fa;
-}
-
-.tableHeaderLabel {
-    font-weight: bold !important;
-    color: #111111 !important;
-    font-family: monospace, Arial, sans-serif;
-    font-size: 13px !important;
-}
-
-.salesPrefixText {
-    font-family: monospace;
+/* 5. Document Flow Overview Table */
+.stitchTableHeaderRow {
+    background-color: #f7f7f7;
+    border: 1px solid #eeeeee;
+    padding: 0.6rem 1rem;
     font-size: 12px;
-    color: #444444;
+    font-weight: 600;
+    color: #424753;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.salesDocLink {
-    font-weight: bold !important;
-    color: #0070f2 !important;
-    font-size: 13px;
-}
-
-.fulfillmentStatusIcon {
-    font-size: 16px !important;
-}
-
-.fulfillmentTextBold {
-    font-weight: bold;
+.stitchTableRow {
+    border-bottom: 1px solid #eeeeee;
+    padding: 0.6rem 1rem;
     font-size: 14px;
+    background-color: #ffffff;
 }
 
-.processPhaseText {
+.stitchDocLink {
+    color: #0064d2 !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+}
+
+.stitchPrefixNum {
+    color: #555555;
+    font-family: monospace;
+}
+
+.stitchPhaseText {
     font-weight: 500;
-    color: #333333;
+    color: #1a1c1c;
 }
 
-.greenCheckIcon {
-    font-size: 18px !important;
+.stitchStatusSuccess { color: #107e3e !important; }
+.stitchStatusError { color: #bb0000 !important; }
+.stitchStatusWarning { color: #e9730c !important; }
+
+/* 6. Process Flow Diagram Nodes matching Stitch */
+.processFlowContainer {
+    background: #fbfbfb;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+    padding: 1.2rem 1.5rem;
+    overflow-x: auto;
+}
+
+.docFlowCard {
+    width: 165px;
+    min-height: 180px;
+    background: #ffffff;
+    border: 1px solid #d9d9d9;
+    padding: 0.8rem 0.7rem;
+    position: relative;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.05);
+}
+
+.stitchActiveCard {
+    border-color: #0064d2 !important;
+}
+
+/* Fold Corner Effect */
+.docFlowCard::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 20px 20px;
+    border-color: transparent transparent #d9d9d9 #d9d9d9;
+    box-shadow: -2px -2px 2px rgba(0,0,0,0.1);
+}
+
+.docCardHeaderTitle {
+    font-size: 12px;
+    font-weight: 600;
+    color: #1a1c1c;
+}
+
+.docCardNumber {
+    font-size: 13px;
+    color: #424753;
+    margin-bottom: 0.5rem;
+}
+
+.docCardStatusRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.docCardStatusIcon {
+    color: #107e3e !important;
+    font-size: 14px !important;
+    margin-right: 4px;
+}
+
+.docCardStatusText {
+    font-size: 12px;
+    font-weight: 600;
+    color: #107e3e;
+}
+
+.docCardMetaText {
+    font-size: 11px;
+    color: #424753;
+    line-height: 1.45;
+}
+
+.flowConnectorHorizontal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 180px;
+}
+
+.flowConnectorLine {
+    height: 2px;
+    background: #0064d2;
+    flex: 1;
+}
+
+.flowConnectorArrow {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 8px solid #0064d2;
+}
+
+.branchColumnContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.branchVerticalLine {
+    width: 2px;
+    height: 40px;
+    background: #0064d2;
+}
+
+.branchArrowDown {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid #0064d2;
+    margin-bottom: 4px;
 }

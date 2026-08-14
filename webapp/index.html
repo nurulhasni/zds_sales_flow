@@ -5,58 +5,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SD - Document Flow &amp; Status Report</title>
 
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#a8c8ff",
+                        "secondary-fixed": "#e0e3e6",
+                        "surface-variant": "#e2e2e2",
+                        "primary-container": "#0064d2",
+                        "on-tertiary-fixed": "#001b3c",
+                        "on-primary-container": "#dfe7ff",
+                        "on-secondary-container": "#626568",
+                        "tertiary-container": "#2c68b5",
+                        "secondary-fixed-dim": "#c4c7ca",
+                        "tertiary-fixed": "#d5e3ff",
+                        "surface-container-high": "#e8e8e8",
+                        "secondary": "#5c5f62",
+                        "surface": "#f9f9f9",
+                        "inverse-on-surface": "#f1f1f1",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#dadada",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#adc6ff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#d8e2ff",
+                        "outline": "#727785",
+                        "primary": "#004da4",
+                        "on-background": "#1a1c1c",
+                        "secondary-container": "#e0e3e6",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-tint": "#005bc0",
+                        "on-primary-fixed": "#001a41",
+                        "tertiary": "#004f9a",
+                        "inverse-surface": "#2f3131",
+                        "outline-variant": "#c2c6d5",
+                        "on-tertiary-fixed-variant": "#004689",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#1a1c1c",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-secondary-fixed-variant": "#44474a",
+                        "surface-container": "#eeeeee",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f3f3f3",
+                        "on-surface-variant": "#424753",
+                        "on-primary-fixed-variant": "#004493",
+                        "on-secondary-fixed": "#191c1e",
+                        "on-tertiary-container": "#dee8ff",
+                        "on-primary": "#ffffff",
+                        "background": "#f9f9f9",
+                        "sap-gray": "#f7f7f7",
+                        "sap-blue": "#0064d2",
+                        "sap-border": "#d9d9d9",
+                        "sap-table-border": "#eeeeee",
+                        "status-success": "#107e3e",
+                        "status-error": "#bb0000",
+                        "status-warning": "#e9730c",
+                        "status-info": "#0064d2"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "space-lg": "24px",
+                        "space-xl": "32px",
+                        "grid-gutter": "16px",
+                        "space-md": "16px",
+                        "space-sm": "8px",
+                        "space-xs": "4px",
+                        "container-padding": "16px",
+                        "unit": "4px",
+                        "grid-margin": "24px"
+                    },
+                    fontFamily: {
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "label-md": ["Hanken Grotesk"],
+                        "headline-xl": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"]
+                    },
+                    fontSize: {
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "headline-xl": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* Splash screen to prevent any flash during library loading */
-        #splash {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #f5f6f7; z-index: 99999;
-            display: flex; align-items: center; justify-content: center;
-            font-family: "72", Arial, sans-serif; color: #354a5f; font-size: 14px;
+        body { font-family: 'Hanken Grotesk', sans-serif; background-color: #f7f7f7; color: #1a1c1c; }
+        .sap-input { border: 1px solid #d9d9d9; padding: 4px 8px; font-size: 14px; border-radius: 2px; width: 100%; }
+        .sap-input:focus { border: 2px solid #0064d2; outline: none; padding: 3px 7px; }
+        .sap-label { font-size: 12px; font-weight: 600; color: #424753; margin-bottom: 4px; display: block; }
+        .sap-btn-primary { background-color: #0064d2; color: white; padding: 6px 16px; border-radius: 4px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; }
+        .sap-btn-secondary { background-color: transparent; color: #0064d2; border: 1px solid #0064d2; padding: 6px 16px; border-radius: 4px; font-size: 14px; font-weight: 600; cursor: pointer; }
+        .sap-card { background: white; border: 1px solid #d9d9d9; border-radius: 4px; padding: 12px; box-shadow: 0px 2px 4px rgba(0,0,0,0.05); }
+        .process-node { width: 160px; height: 180px; position: relative; }
+        .process-node::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 20px 20px;
+            border-color: transparent transparent #d9d9d9 #d9d9d9;
+            box-shadow: -2px -2px 2px rgba(0,0,0,0.1);
         }
-        #splash .dot { 
-            width: 8px; height: 8px; margin: 0 4px; border-radius: 50%; 
-            background: #0070f2; animation: pulse 1.2s infinite ease-in-out; display: inline-block; 
-        }
-        #splash .dot:nth-child(2) { animation-delay: 0.2s; }
-        #splash .dot:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes pulse { 0%,80%,100%{opacity:.3;transform:scale(.8)} 40%{opacity:1;transform:scale(1.1)} }
+        .arrow-line { position: absolute; height: 2px; background-color: #0064d2; top: 50%; transform: translateY(-50%); z-index: 0; }
+        .arrow-head { position: absolute; right: 0; top: 50%; transform: translateY(-50%) translateX(50%); width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 8px solid #0064d2; }
     </style>
 
     <script id="sap-ui-bootstrap"
         src="resources/sap-ui-core.js"
         data-sap-ui-theme="sap_horizon"
-        data-sap-ui-libs="sap.m,sap.f,sap.ui.core,sap.ui.layout,sap.ui.table,sap.viz"
+        data-sap-ui-libs="sap.m,sap.ui.core"
         data-sap-ui-resourceroots='{ "zds.sales.flow": "./" }'
         data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
         data-sap-ui-compatversion="edge"
         data-sap-ui-async="true"
-        data-sap-ui-frameoptions="trusted"
-        data-sap-ui-preload="async">
-    </script>
-
-    <script>
-        // Remove splash once UI5 is fully initialized
-        document.addEventListener("DOMContentLoaded", function () {
-            var check = setInterval(function () {
-                if (document.querySelector(".sapMPage,.sapFDynamicPage,.sapUiTable")) {
-                    clearInterval(check);
-                    var splash = document.getElementById("splash");
-                    if (splash) { splash.style.opacity = "0"; setTimeout(function(){ splash.remove(); }, 300); }
-                }
-            }, 200);
-            // Failsafe: remove after 10s no matter what
-            setTimeout(function () {
-                var splash = document.getElementById("splash");
-                if (splash) { splash.remove(); }
-            }, 10000);
-        });
+        data-sap-ui-frameoptions="trusted">
     </script>
 </head>
-<body class="sapUiBody" id="content">
-    <div id="splash">
-        <span>Loading</span>
-        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-    </div>
+<body class="sapUiBody bg-sap-gray font-body-md text-on-surface" id="content">
     <div data-sap-ui-component
          data-name="zds.sales.flow"
          data-id="container"
