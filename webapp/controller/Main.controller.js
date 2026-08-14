@@ -56,7 +56,8 @@ sap.ui.define([
                         FulfillmentText: "Processing",
                         ProcessPhase: "Accounting",
                         CreatedOn: "21.07.2026",
-                        IsExpanded: false
+                        IsExpanded: false,
+                        ExpandIcon: "sap-icon://navigation-right-arrow"
                     },
                     {
                         SalesDocument: "2110000177",
@@ -65,7 +66,8 @@ sap.ui.define([
                         FulfillmentText: "Processing",
                         ProcessPhase: "Accounting",
                         CreatedOn: "23.07.2026",
-                        IsExpanded: false
+                        IsExpanded: false,
+                        ExpandIcon: "sap-icon://navigation-right-arrow"
                     },
                     {
                         SalesDocument: "2110000178",
@@ -74,7 +76,8 @@ sap.ui.define([
                         FulfillmentText: "Issue Found",
                         ProcessPhase: "Delivery Processing",
                         CreatedOn: "25.07.2026",
-                        IsExpanded: true
+                        IsExpanded: true,
+                        ExpandIcon: "sap-icon://navigation-down-arrow"
                     },
                     {
                         SalesDocument: "2110000179",
@@ -83,7 +86,8 @@ sap.ui.define([
                         FulfillmentText: "Completed",
                         ProcessPhase: "Already Payment",
                         CreatedOn: "26.07.2026",
-                        IsExpanded: false
+                        IsExpanded: false,
+                        ExpandIcon: "sap-icon://navigation-right-arrow"
                     },
                     {
                         SalesDocument: "2110000182",
@@ -92,7 +96,8 @@ sap.ui.define([
                         FulfillmentText: "Delivery Processing",
                         ProcessPhase: "Delivery Processing (20.07.2026 With Quotation)",
                         CreatedOn: "27.07.2026",
-                        IsExpanded: false
+                        IsExpanded: false,
+                        ExpandIcon: "sap-icon://navigation-right-arrow"
                     }
                 ]
             });
@@ -114,6 +119,7 @@ sap.ui.define([
                 var oModel = this.getView().getModel("headerModel");
                 var bCurrentState = oModel.getProperty(sPath + "/IsExpanded");
                 oModel.setProperty(sPath + "/IsExpanded", !bCurrentState);
+                oModel.setProperty(sPath + "/ExpandIcon", !bCurrentState ? "sap-icon://navigation-down-arrow" : "sap-icon://navigation-right-arrow");
             }
         }
     });

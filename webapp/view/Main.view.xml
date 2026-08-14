@@ -26,8 +26,8 @@
 
                 <!-- 2. SELECTION SCREEN (FILTER BAR) -->
                 <Panel expandable="true" expanded="true" headerText="Selection Screen" class="stitchCard sapUiSmallMarginBottom">
-                    <layout:Grid defaultSpan="XL2 L3 M4 S12" class="sapUiTinyMarginTop">
-                        <VBox class="sapUiTinyMarginBottom">
+                    <HBox wrap="Wrap" justifyContent="SpaceBetween" alignItems="End" class="sapUiTinyMarginTop">
+                        <VBox width="18%" class="sapUiTinyMarginBottom">
                             <Label text="SD Document Type" class="stitchLabel"/>
                             <Select selectedKey="{filterModel>/docType}" width="100%">
                                 <core:Item key="Sales Order" text="Sales Order"/>
@@ -35,68 +35,64 @@
                             </Select>
                         </VBox>
 
-                        <VBox class="sapUiTinyMarginBottom">
+                        <VBox width="18%" class="sapUiTinyMarginBottom">
                             <Label text="SD Document Number" class="stitchLabel"/>
                             <Input value="{filterModel>/docNum}" width="100%"/>
                         </VBox>
 
-                        <VBox class="sapUiTinyMarginBottom">
+                        <VBox width="18%" class="sapUiTinyMarginBottom">
                             <Label text="Sold-to Party" class="stitchLabel"/>
                             <Input value="{filterModel>/soldTo}" width="100%"/>
                         </VBox>
 
-                        <VBox class="sapUiTinyMarginBottom">
+                        <VBox width="18%" class="sapUiTinyMarginBottom">
                             <Label text="Customer Reference" class="stitchLabel"/>
                             <Input value="{filterModel>/custRef}" width="100%"/>
                         </VBox>
 
-                        <VBox class="sapUiTinyMarginBottom">
+                        <VBox width="18%" class="sapUiTinyMarginBottom">
                             <Label text="Document Date" class="stitchLabel"/>
                             <DatePicker value="{filterModel>/docDate}" width="100%"/>
                         </VBox>
 
-                        <VBox class="sapUiTinyMarginBottom">
+                        <VBox width="18%" class="sapUiTinyMarginBottom">
                             <Label text="Sales Employee" class="stitchLabel"/>
                             <Input value="{filterModel>/salesEmp}" width="100%"/>
                         </VBox>
 
-                        <VBox class="sapUiTinyMarginBottom">
+                        <VBox width="18%" class="sapUiTinyMarginBottom">
                             <Label text="Sales Organization" class="stitchLabel"/>
                             <Input value="{filterModel>/salesOrg}" width="100%"/>
                         </VBox>
 
-                        <VBox class="sapUiTinyMarginBottom">
+                        <VBox width="18%" class="sapUiTinyMarginBottom">
                             <Label text="Distribution Channel" class="stitchLabel"/>
                             <Input value="{filterModel>/distChannel}" width="100%"/>
                         </VBox>
 
-                        <VBox class="sapUiTinyMarginBottom">
+                        <VBox width="18%" class="sapUiTinyMarginBottom">
                             <Label text="Division" class="stitchLabel"/>
                             <Input value="{filterModel>/division}" width="100%"/>
                         </VBox>
 
                         <!-- Go & Adapt Filter Buttons -->
-                        <HBox alignItems="Center" class="sapUiTinyMarginTop">
-                            <Button text="Go" type="Emphasized" press="onSearch" class="stitchBtnPrimary sapUiSmallMarginEnd" width="6rem"/>
+                        <HBox width="18%" alignItems="Center" justifyContent="Start" class="sapUiTinyMarginBottom">
+                            <Button text="Go" type="Emphasized" press="onSearch" class="stitchBtnPrimary sapUiSmallMarginEnd" width="5rem"/>
                             <Link text="Adapt Filter" press="onAdaptFilter" class="stitchLinkBlue"/>
                         </HBox>
-                    </layout:Grid>
+                    </HBox>
                 </Panel>
 
                 <!-- 3. DOCUMENT FLOW SUMMARY & CHART AREA -->
-                <layout:Grid defaultSpan="XL12 L12 M12 S12" class="sapUiSmallMarginBottom">
+                <HBox wrap="Wrap" justifyContent="SpaceBetween" class="sapUiSmallMarginBottom">
 
                     <!-- Left: 4 Columns (6 KPI Status Cards with 4px left-border accent) -->
-                    <VBox class="stitchCard">
-                        <layoutData>
-                            <layout:GridData span="XL4 L4 M12 S12"/>
-                        </layoutData>
-
+                    <VBox width="33%" class="stitchCard">
                         <Title text="Document Flow Summary" level="H3" class="stitchSectionTitle sapUiSmallMarginBottom"/>
 
-                        <layout:Grid defaultSpan="XL6 L6 M6 S12" class="sapUiTinyMarginTop">
+                        <HBox wrap="Wrap" justifyContent="SpaceBetween" class="sapUiTinyMarginTop">
                             <!-- Card 1: Inquiry -->
-                            <HBox class="stitchKpiTile stitchKpiInquiry">
+                            <HBox width="48%" class="stitchKpiTile stitchKpiInquiry sapUiTinyMarginBottom">
                                 <HBox justifyContent="SpaceBetween" alignItems="Center" width="100%">
                                     <core:Icon src="sap-icon://group" class="stitchKpiIconInquiry"/>
                                     <VBox alignItems="End">
@@ -107,7 +103,7 @@
                             </HBox>
 
                             <!-- Card 2: Delivery -->
-                            <HBox class="stitchKpiTile stitchKpiDelivery">
+                            <HBox width="48%" class="stitchKpiTile stitchKpiDelivery sapUiTinyMarginBottom">
                                 <HBox justifyContent="SpaceBetween" alignItems="Center" width="100%">
                                     <core:Icon src="sap-icon://shipping-status" class="stitchKpiIconDelivery"/>
                                     <VBox alignItems="End">
@@ -118,7 +114,7 @@
                             </HBox>
 
                             <!-- Card 3: Quotation -->
-                            <HBox class="stitchKpiTile stitchKpiQuotation">
+                            <HBox width="48%" class="stitchKpiTile stitchKpiQuotation sapUiTinyMarginBottom">
                                 <HBox justifyContent="SpaceBetween" alignItems="Center" width="100%">
                                     <core:Icon src="sap-icon://edit" class="stitchKpiIconQuotation"/>
                                     <VBox alignItems="End">
@@ -129,7 +125,7 @@
                             </HBox>
 
                             <!-- Card 4: Billing -->
-                            <HBox class="stitchKpiTile stitchKpiBilling">
+                            <HBox width="48%" class="stitchKpiTile stitchKpiBilling sapUiTinyMarginBottom">
                                 <HBox justifyContent="SpaceBetween" alignItems="Center" width="100%">
                                     <core:Icon src="sap-icon://sales-document" class="stitchKpiIconBilling"/>
                                     <VBox alignItems="End">
@@ -140,7 +136,7 @@
                             </HBox>
 
                             <!-- Card 5: Sales Order -->
-                            <HBox class="stitchKpiTile stitchKpiSalesOrder">
+                            <HBox width="48%" class="stitchKpiTile stitchKpiSalesOrder sapUiTinyMarginBottom">
                                 <HBox justifyContent="SpaceBetween" alignItems="Center" width="100%">
                                     <core:Icon src="sap-icon://display" class="stitchKpiIconSalesOrder"/>
                                     <VBox alignItems="End">
@@ -151,7 +147,7 @@
                             </HBox>
 
                             <!-- Card 6: Payment -->
-                            <HBox class="stitchKpiTile stitchKpiPayment">
+                            <HBox width="48%" class="stitchKpiTile stitchKpiPayment sapUiTinyMarginBottom">
                                 <HBox justifyContent="SpaceBetween" alignItems="Center" width="100%">
                                     <core:Icon src="sap-icon://lead" class="stitchKpiIconPayment"/>
                                     <VBox alignItems="End">
@@ -160,15 +156,11 @@
                                     </VBox>
                                 </HBox>
                             </HBox>
-                        </layout:Grid>
+                        </HBox>
                     </VBox>
 
                     <!-- Right: 8 Columns (Total Issue Bar Chart) -->
-                    <VBox class="stitchChartBox">
-                        <layoutData>
-                            <layout:GridData span="XL8 L8 M12 S12"/>
-                        </layoutData>
-
+                    <VBox width="65%" class="stitchChartBox">
                         <!-- Chart Header Toolbar Links & Icons -->
                         <HBox justifyContent="End" alignItems="Center" class="sapUiTinyMarginBottom">
                             <Link text="Details" class="stitchLinkBlue sapUiSmallMarginEnd"/>
@@ -200,7 +192,7 @@
                             </VBox>
                         </VBox>
                     </VBox>
-                </layout:Grid>
+                </HBox>
 
                 <!-- 4. DOCUMENT FLOW OVERVIEW TABLE & PROCESS FLOW DIAGRAM -->
                 <VBox class="stitchCard sapUiSmallMarginBottom">
@@ -243,7 +235,7 @@
 
                                     <HBox width="20%" justifyContent="SpaceBetween" alignItems="Center">
                                         <core:Icon src="sap-icon://sys-enter-2" class="stitchStatusSuccess"/>
-                                        <Button icon="{= ${headerModel>IsExpanded} ? 'sap-icon://navigation-down-arrow' : 'sap-icon://navigation-right-arrow' }" type="Transparent" press="onToggleRowExpansion"/>
+                                        <Button icon="{headerModel>ExpandIcon}" type="Transparent" press="onToggleRowExpansion"/>
                                     </HBox>
                                 </HBox>
 
